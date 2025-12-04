@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: status-deployment
+  labels:
+    app: status
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: status
+  template:
+    metadata:
+      labels:
+        app: status
+    spec:
+      containers:
+        - name: status
+          image: devsolutions/status:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 5000

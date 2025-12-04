@@ -1,0 +1,26 @@
+version: "3.8"
+
+services:
+  web:
+    build:
+      context: ./app/web
+    image: devsolutions/web:latest
+    container_name: devsolutions_web
+    ports:
+      - "8080:80"   # hostPort:containerPort
+    networks:
+      - devnet
+
+  status:
+    build:
+      context: ./app/status
+    image: devsolutions/status:latest
+    container_name: devsolutions_status
+    ports:
+      - "5001:5000"
+    networks:
+      - devnet
+
+networks:
+  devnet:
+    driver: bridge
